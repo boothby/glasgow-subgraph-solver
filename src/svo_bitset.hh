@@ -8,6 +8,11 @@
 #include <cstring>
 #include <limits>
 
+#ifdef GLASGOW_SUBGRAPH_SOLVER_PORTABLE_BUILTINS
+#define PSNIP_BUILTIN_EMULATE_NATIVE
+#include <portable-snippets/builtin.h>
+#endif
+
 class SVOBitset
 {
     private:

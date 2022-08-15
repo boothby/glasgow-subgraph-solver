@@ -7,6 +7,10 @@
 #include <array>
 #include <cstring>
 #include <limits>
+#include <bit>
+
+using std::popcount;
+using std::countr_zero;
 
 class SVOBitset
 {
@@ -107,17 +111,17 @@ class SVOBitset
         {
             if (! _is_long()) {
                 for (unsigned i = 0 ; i < n_words ; ++i) {
-                    int x = __builtin_ffsll(_data.short_data[i]);
-                    if (0 != x)
-                        return i * bits_per_word + x - 1;
+                    int x = countr_zero(_data.short_data[i])
+                    if (bits_per_word != x)
+                        return i * bits_per_word + x;
                 }
                 return npos;
             }
             else {
                 for (unsigned i = 0, i_end = n_words ; i < i_end ; ++i) {
-                    int x = __builtin_ffsll(_data.long_data[i]);
-                    if (0 != x)
-                        return i * bits_per_word + x - 1;
+                    int x = countr_zero(_data.short_data[i])
+                    if (bits_per_word != x)
+                        return i * bits_per_word + x;
                 }
                 return npos;
             }
@@ -194,7 +198,7 @@ class SVOBitset
             unsigned result = 0;
             const BitWord * b = (_is_long() ? _data.long_data : _data.short_data);
             for (unsigned i = 0, i_end = n_words ; i < i_end ; ++i)
-                result += __builtin_popcountll(b[i]);
+                result += popcount(b[i]);
 
             return result;
         }

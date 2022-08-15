@@ -4,6 +4,20 @@
 
 #include <algorithm>
 
+#ifdef USE_PORTABLE_SNIPPETS_BUILTIN
+#include <portable-snippets/builtin/builtin.h>
+int popcount(unsigned long long x) {
+    return psnip_builtin_popcountll(x);
+}
+int countr_zero(unsigned long long x) {
+    return psnip_builtin_ctzll(x);
+}
+#else
+#include <bit>
+using std::popcount;
+using std::countr_zero;
+#endif
+
 using std::copy;
 
 SVOBitset::SVOBitset(unsigned size, unsigned bits)

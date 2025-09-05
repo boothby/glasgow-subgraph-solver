@@ -7,6 +7,7 @@
 #include <gss/innards/proof.hh>
 #include <gss/innards/svo_bitset.hh>
 
+#include <cstdint>
 #include <memory>
 
 namespace gss::innards

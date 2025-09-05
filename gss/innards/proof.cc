@@ -17,6 +17,7 @@ using std::copy;
 using std::endl;
 using std::find;
 using std::function;
+using std::get;
 using std::istreambuf_iterator;
 using std::make_unique;
 using std::map;
@@ -36,6 +37,7 @@ using std::tuple;
 using std::unique_ptr;
 using std::unordered_map;
 using std::vector;
+
 
 ProofError::ProofError(const string & m) noexcept :
     _message("Proof error: " + m)
@@ -319,7 +321,7 @@ auto Proof::recover_at_most_one_constraint(int p) -> void
 
 auto Proof::need_elimination(int p, int t) -> void
 {
-    if (! _imp->eliminations.contains(pair{p, t})) {
+    if (! _imp->eliminations.count(pair{p, t})) {
         *_imp->proof_stream << "# 0\n";
         *_imp->proof_stream << "u 1 ~x" << _imp->variable_mappings[pair{p, t}] << " >= 1 ;\n";
         _imp->eliminations[pair{p, t}] = ++_imp->proof_line;
@@ -1011,7 +1013,7 @@ auto Proof::colour_bound(const vector<vector<int>> & ccs) -> void
 
             for (unsigned i = 0 ; i < cc.size() ; ++i)
                 for (unsigned j = i + 1 ; j < cc.size() ; ++j)
-                    if (! _imp->non_edge_constraints.contains(pair{cc[i], cc[j]})) {
+                    if (! _imp->non_edge_constraints.count(pair{cc[i], cc[j]})) {
                         *_imp->proof_stream << "# 0\n";
                         *_imp->proof_stream << "ea -1 x" << _imp->binary_variable_mappings[cc[i]]
                             << " -1 x" << _imp->binary_variable_mappings[cc[j]] << " >= -1 ;\n";

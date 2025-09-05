@@ -14,14 +14,8 @@ namespace gss::innards
 {
 #ifdef USE_PORTABLE_SNIPPETS_BUILTIN
 #include <portable-snippets/builtin/builtin.h>
-    int popcount(unsigned long long x)
-    {
-        return psnip_builtin_popcountll(x);
-    }
-    int countr_zero(unsigned long long x)
-    {
-        return psnip_builtin_ctzll(x);
-    }
+    int popcount(unsigned long long x);
+    int countr_zero(unsigned long long x);
 #else
     using std::countr_zero;
     using std::popcount;

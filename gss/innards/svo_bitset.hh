@@ -8,12 +8,13 @@
 
 #ifndef USE_PORTABLE_SNIPPETS_BUILTIN
 #include <bit>
+#else
+#include <portable-snippets/builtin/builtin.h>
 #endif
 
 namespace gss::innards
 {
 #ifdef USE_PORTABLE_SNIPPETS_BUILTIN
-#include <portable-snippets/builtin/builtin.h>
     int popcount(unsigned long long x);
     int countr_zero(unsigned long long x);
 #else

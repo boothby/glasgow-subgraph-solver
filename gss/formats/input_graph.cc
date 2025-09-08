@@ -2,14 +2,12 @@
 #include <gss/formats/input_graph.hh>
 #include <gss/utils/vertex_name_map.hh>
 
-#include <cstdint> // am I fixing a bug in gcc-toolset-12's standard library here?
 #include <algorithm>
 #include <iterator>
 #include <limits>
 #include <map>
 #include <string>
 #include <vector>
-#include <memory>
 
 using std::back_inserter;
 using std::count_if;

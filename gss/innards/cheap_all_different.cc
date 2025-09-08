@@ -1,6 +1,5 @@
 #include <gss/innards/cheap_all_different.hh>
 
-#include <cstdint>
 #include <tuple>
 #include <type_traits>
 

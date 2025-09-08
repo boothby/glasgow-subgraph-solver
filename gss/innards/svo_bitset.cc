@@ -21,9 +21,12 @@ SVOBitset::SVOBitset(unsigned size, unsigned bits)
     }
 }
 
-namespace gss::innards {
 #ifdef USE_PORTABLE_SNIPPETS_BUILTIN
 #include <portable-snippets/builtin/builtin.h>
+#endif
+
+namespace gss::innards {
+#ifdef USE_PORTABLE_SNIPPETS_BUILTIN
     int popcount(unsigned long long x)
     {
         return psnip_builtin_popcountll(x);

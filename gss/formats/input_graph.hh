@@ -6,6 +6,7 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <cstdint> // am I fixing a bug in gcc-toolset-12's standard library here?
 
 /**
  * A graph, in a convenient format for reading in from files. We don't do any

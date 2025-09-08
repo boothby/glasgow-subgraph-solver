@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <cstdint> // am I fixing a bug in gcc-toolset-12's standard library here?
 
 using std::back_inserter;
 using std::count_if;

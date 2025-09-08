@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <memory>
 
 using std::back_inserter;
 using std::count_if;

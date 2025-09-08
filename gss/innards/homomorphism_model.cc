@@ -12,6 +12,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <cstdint>
 
 using namespace gss;
 using namespace gss::innards;

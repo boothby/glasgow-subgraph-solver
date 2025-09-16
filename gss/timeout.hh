@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <memory>
+#include <atomic>
 
 namespace gss
 {
@@ -11,9 +12,10 @@ namespace gss
     private:
         struct Detail;
         std::unique_ptr<Detail> _detail;
+        std::atomic<bool> &cancel;
 
     public:
-        explicit Timeout(const std::chrono::seconds limit);
+        explicit Timeout(const std::chrono::seconds limit, std::atomic<bool> &cancel);
         ~Timeout();
 
         auto should_abort() const -> bool;

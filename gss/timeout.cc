@@ -33,8 +33,9 @@ struct Timeout::Detail
     atomic<bool> abort;
 };
 
-Timeout::Timeout(const seconds limit) :
-    _detail(make_unique<Detail>())
+Timeout::Timeout(const seconds limit, std::atomic<bool> &cancel) :
+    _detail(make_unique<Detail>()),
+    cancel(cancel)
 {
     _detail->abort.store(false);
     if (0s != limit) {
@@ -64,7 +65,7 @@ Timeout::~Timeout()
 
 auto Timeout::should_abort() const -> bool
 {
-    return _detail->abort.load();
+    return _detail->abort.load() || cancel.load();
 }
 
 auto Timeout::aborted() const -> bool
